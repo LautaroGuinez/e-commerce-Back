@@ -15,8 +15,6 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-/* app.use("/api", router);
- */
 db.sync({ force: false }).then(() => {
   console.log("db conectada");
   app.listen(3001, () => console.log("Servidor escuchando en el puerto 3001"));
