@@ -2,7 +2,7 @@ const express = require("express");
 const routerUser = express.Router();
 const { generateToken } = require("../config/tokens");
 
-const User = require("../models/users");
+const User = require("../models/Users");
 
 routerUser.post("/register", (req, res) => {
   const { name, lastname, email, password } = req.body;
