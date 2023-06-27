@@ -2,6 +2,7 @@
 const db = require("./db/index");
 const express = require("express");
 const app = express();
+const router = require("./routes");
 
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -14,6 +15,8 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
+
+app.use("/api", router);
 
 db.sync({ force: false }).then(() => {
   console.log("db conectada");

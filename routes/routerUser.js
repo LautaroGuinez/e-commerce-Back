@@ -1,6 +1,6 @@
 const express = require("express");
 const routerUser = express.Router();
-const { generateToken } = require("../utils/tokens");
+const { generateToken } = require("../config/tokens");
 
 const User = require("../models/users");
 
@@ -43,7 +43,3 @@ routerUser.post("/login", async (req, res) => {
 });
 
 module.exports = routerUser;
-
-
-
-
