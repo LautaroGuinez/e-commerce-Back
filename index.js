@@ -1,5 +1,5 @@
 // Configuración del server
-const db = require("./db/index");
+const db = require("./config/db");
 const express = require("express");
 const app = express();
 const router = require("./routes");
