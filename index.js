@@ -1,19 +1,21 @@
 // Configuración del server
 const db = require("./config/db");
+const volleyball = require("volleyball");
 const express = require("express");
 const app = express();
 const router = require("./routes");
-
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
-const corsOptions = {
+/* const corsOptions = {
   origin: "http://localhost:3000/",
   methods: ["GET", "POST", "DELETE"],
   credentials: true,
 };
+ */
+app.use(volleyball);
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(express.json());
 app.use(cookieParser());
