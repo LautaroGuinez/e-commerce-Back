@@ -53,7 +53,7 @@ routerProduct.get("/search/:query", (req, res) => {
 
 routerProduct.post("/submit", (req, res) => {
   Product.create(req.body)
-    .then((results) => res.status(200))
+    .then((results) => res.status(200).send(results))
     .catch((error) => {
       // Manejar errores
       console.error(error);
