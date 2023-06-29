@@ -17,7 +17,7 @@ routerProduct.get("/:id", (req, res) => {
 });
 
 // Ruta para obtener todos los productos
-routerProduct.get("/products", async (req, res) => {
+routerProduct.get("/", async (req, res) => {
   try {
     const products = await Product.findAll();
     res.status(200).send(products);
