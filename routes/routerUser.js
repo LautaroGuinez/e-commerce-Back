@@ -42,4 +42,8 @@ routerUser.post("/login", async (req, res) => {
   }
 });
 
+routerUser.post("/logout", (req, res, next) => {
+  res.clearCookie("token").sendStatus(204);
+});
+
 module.exports = routerUser;
