@@ -42,8 +42,18 @@ routerProduct.get("/search/:query", (req, res) => {
   })
     .then((results) => {
       // Enviar los resultados al frontend como objeto JSON
-      res.json(results);
+      res.status(200).json(results);
     })
+    .catch((error) => {
+      // Manejar errores
+      console.error(error);
+      res.status(500).json({ error: "Error en la búsqueda" });
+    });
+});
+
+routerProduct.post("/submit", (req, res) => {
+  Product.create(req.body)
+    .then((results) => res.status(200))
     .catch((error) => {
       // Manejar errores
       console.error(error);
