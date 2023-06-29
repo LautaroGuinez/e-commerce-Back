@@ -4,7 +4,6 @@ const { Op } = require("sequelize");
 
 const Product = require("../models/Product");
 const routerUser = require("./routerUser");
-const { format } = require("sequelize/types/utils");
 
 // Ruta para obtener un producto
 routerProduct.get("/:id", (req, res) => {
