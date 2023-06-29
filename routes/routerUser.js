@@ -47,6 +47,7 @@ routerUser.post("/login", async (req, res) => {
 
 routerUser.get("/me", validateAuth, (req, res) => res.send(req.user));
 
+
 routerUser.post("/logout", (req, res, next) => {
   res.clearCookie("token").sendStatus(204);
 });
