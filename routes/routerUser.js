@@ -1,7 +1,7 @@
 const express = require("express");
 const routerUser = express.Router();
 const { generateToken } = require("../config/tokens");
-
+const bcrypt = require("bcrypt")
 const User = require("../models/Users");
 
 routerUser.post("/register", (req, res) => {
@@ -41,5 +41,6 @@ routerUser.post("/login", async (req, res) => {
     res.status(500).json({ error: "Error en el servidor" });
   }
 });
+
 
 module.exports = routerUser;
