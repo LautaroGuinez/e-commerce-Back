@@ -7,16 +7,15 @@ const router = require("./routes");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
-/* const corsOptions = {
-  origin: "http://localhost:3000/",
-  methods: ["GET", "POST", "DELETE"],
-  credentials: true,
-};
-CREATE BRANCH
- */
+
 app.use(volleyball);
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(cookieParser());

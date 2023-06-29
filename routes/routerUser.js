@@ -3,6 +3,8 @@ const routerUser = express.Router();
 const { generateToken } = require("../config/tokens");
 const bcrypt = require("bcrypt");
 const User = require("../models/Users");
+const {validateAuth} = require("../middleware/index.js")
+
 
 routerUser.post("/register", (req, res) => {
   const { name, lastname, email, password } = req.body;
@@ -42,8 +44,11 @@ routerUser.post("/login", async (req, res) => {
   }
 });
 
+
+routerUser.get("/me", validateAuth, (req, res) => res.send(req.user));
 routerUser.post("/logout", (req, res, next) => {
   res.clearCookie("token").sendStatus(204);
 });
+
 
 module.exports = routerUser;
