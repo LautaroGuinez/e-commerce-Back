@@ -1,7 +1,10 @@
 const express = require("express");
 const routerProduct = express.Router();
+const { Op } = require("sequelize");
 
 const Product = require("../models/Product");
+const routerUser = require("./routerUser");
+const { format } = require("sequelize/types/utils");
 
 // Ruta para obtener un producto
 routerProduct.get("/:id", (req, res) => {
@@ -25,6 +28,28 @@ routerProduct.get("/", async (req, res) => {
     console.error(error);
     res.status(500).json({ message: "Error al obtener los productos" });
   }
+});
+
+//Ruta para obtener productos con nombre espesifico
+
+routerProduct.get("/search/:query", (req, res) => {
+  const { query } = req.params;
+  Product.findAll({
+    where: {
+      name: {
+        [Op.like]: `%${query}%`,
+      },
+    },
+  })
+    .then((results) => {
+      // Enviar los resultados al frontend como objeto JSON
+      res.json(results);
+    })
+    .catch((error) => {
+      // Manejar errores
+      console.error(error);
+      res.status(500).json({ error: "Error en la búsqueda" });
+    });
 });
 
 module.exports = routerProduct;

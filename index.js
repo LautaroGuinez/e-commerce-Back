@@ -7,7 +7,6 @@ const router = require("./routes");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
-
 app.use(volleyball);
 
 app.use(
