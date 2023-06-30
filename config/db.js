@@ -1,3 +1,4 @@
+// configuracion de db
 const Sequelize = require("sequelize");
 
 const db = new Sequelize("ecommerce", null, null, {
