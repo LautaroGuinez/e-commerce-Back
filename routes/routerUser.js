@@ -42,11 +42,11 @@ routerUser.post("/login", async (req, res) => {
     res.status(500).json({ error: "Error en el servidor" });
   }
 });
-
-routerUser.get("/me", validateAuth, (req, res) => res.send(req.user));
-routerUser.post("/logout", (req, res) => {
+routerUser.get("/logout", (req, res) => {
   res.clearCookie("token");
   res.sendStatus(204);
 });
+
+routerUser.get("/me", validateAuth, (req, res) => res.send(req.user));
 
 module.exports = routerUser;
