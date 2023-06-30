@@ -18,6 +18,9 @@ Product.init(
       type: Sequelize.STRING,
       allowNull: false,
     },
+    description: {
+      type: Sequelize.TEXT,
+    },
     imgUrl: {
       type: Sequelize.STRING,
       validate: {
