@@ -1,5 +1,5 @@
 // Configuración del server
-const db = require("./config/db");
+const db = require("./config/db.js");
 const volleyball = require("volleyball");
 const express = require("express");
 const app = express();
@@ -7,7 +7,7 @@ const router = require("./routes");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
-import { PORT } from "./config/envs";
+const envs = require("./config/envs")
 app.use(volleyball);
 
 app.use(
@@ -24,5 +24,5 @@ app.use("/api", router);
 
 db.sync({ force: false }).then(() => {
   console.log("db conectada");
-  app.listen(3001, () => console.log("Servidor escuchando en el puerto 3001"));
+  app.listen(envs.PORT, () => console.log("Servidor escuchando en el puerto 3001"));
 });
