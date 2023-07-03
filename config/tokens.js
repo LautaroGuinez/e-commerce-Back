@@ -1,5 +1,5 @@
 // configuracion jwt
-const envs = require("./envs")
+const envs = require("./envs");
 const jwt = require("jsonwebtoken");
 
 const generateToken = (payload) => {
@@ -8,7 +8,6 @@ const generateToken = (payload) => {
 };
 
 const validateToken = (token) => {
-  console.log(token);
   return jwt.verify(token, envs.SECRET);
 };
 

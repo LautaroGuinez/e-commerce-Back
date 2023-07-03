@@ -24,7 +24,7 @@ Product.init(
     imgUrl: {
       type: Sequelize.STRING,
       validate: {
-        isUrl: true, // Validación opcional para asegurarse de que la cadena sea una URL válida
+        isUrl: true,
       },
     },
     stock: {

@@ -3,33 +3,28 @@ const routerProduct = express.Router();
 const { Op } = require("sequelize");
 
 const Product = require("../models/Product");
-const routerUser = require("./routerUser");
 
-// Ruta para obtener un producto
 routerProduct.get("/:id", (req, res) => {
   const id = req.params.id;
   Product.findByPk(id)
     .then((product) => {
       if (!product) {
-        return res.status(404).json({ error: "El producto  no existe" });
+        return res.status(404).json({ error: "The product does not exist" });
       }
       res.send(product);
     })
-    .catch((error) => res.status(500).json({ error: "Error en el servidor" }));
+    .catch(() => res.status(500).json({ error: "Server Error" }));
 });
 
-// Ruta para obtener todos los productos
 routerProduct.get("/", async (req, res) => {
   try {
     const products = await Product.findAll();
     res.status(200).send(products);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Error al obtener los productos" });
+    res.status(500).json({ message: "Error getting the products" });
   }
 });
-
-//Ruta para obtener productos con nombre espesifico
 
 routerProduct.get("/search/:query", (req, res) => {
   const { query } = req.params;
@@ -41,13 +36,13 @@ routerProduct.get("/search/:query", (req, res) => {
     },
   })
     .then((results) => {
-      // Enviar los resultados al frontend como objeto JSON
+      // Send the results to the frontend as a JSON object
       res.status(200).json(results);
     })
     .catch((error) => {
-      // Manejar errores
+      // Handle errors
       console.error(error);
-      res.status(500).json({ error: "Error en la búsqueda" });
+      res.status(500).json({ error: "Search failed" });
     });
 });
 
@@ -55,9 +50,9 @@ routerProduct.post("/submit", (req, res) => {
   Product.create(req.body)
     .then((results) => res.status(200).send(results))
     .catch((error) => {
-      // Manejar errores
+      // Handle errors
       console.error(error);
-      res.status(500).json({ error: "Error en la búsqueda" });
+      res.status(500).json({ error: "Search failed" });
     });
 });
 
