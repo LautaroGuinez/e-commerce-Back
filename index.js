@@ -1,6 +1,7 @@
 // server configuration
-const app = express();
+
 const express = require("express");
+const app = express();
 const volleyball = require("volleyball");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
