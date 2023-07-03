@@ -1,6 +1,6 @@
 // configuracion jwt
+import { SECRET } from "./envs";
 const jwt = require("jsonwebtoken");
-const SECRET = "BURBUJA";
 
 const generateToken = (payload) => {
   const token = jwt.sign({ user: payload }, SECRET, { expiresIn: "2d" });

@@ -7,6 +7,7 @@ const router = require("./routes");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
+import { PORT } from "./config/envs";
 app.use(volleyball);
 
 app.use(
