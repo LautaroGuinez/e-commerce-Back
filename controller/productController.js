@@ -3,18 +3,14 @@ const productService = require("../service/productService");
 
 const getProduct = async (req, res) => {
   try {
-    const  id  = req.params.id;
+    const id = req.params.id;
     const product = await productService.getProducByID(id);
-    console.log(product)
+    console.log(product);
     return res.status(200).send(product);
-    
   } catch (error) {
     return res.status(500).json({ error: "Server Error" });
   }
 };
-
-
-
 
 const getAllProducts = async (req, res) => {
   try {
@@ -40,7 +36,6 @@ const submitProduct = async (req, res) => {
     const product = await productService.postProduct(req.body);
     return res.status(200).send(product);
   } catch (error) {
-    console.error(error);
     return res.status(500).json({ error: "Search failed" });
   }
 };
