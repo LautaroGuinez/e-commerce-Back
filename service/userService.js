@@ -33,6 +33,7 @@ exports.login = async (users) => {
   };
   return payload;
 };
+
 exports.deleteUserService = async (id) => {
   User.destroy({
     where: {
@@ -41,4 +42,26 @@ exports.deleteUserService = async (id) => {
   })
     .then(() => res.sendStatus(202))
     .catch(next);
+};
+exports.getAllUsers = async () => {
+  const users = await User.findAll();
+  return users;
+};
+exports.getUserByEmail = async (data) => {
+  const { email } = data;
+  const user = await User.findOne({
+    where: {
+      email: email,
+    },
+  });
+  return user;
+};
+
+exports.deleteUser = async (user) => {
+  const { email } = user;
+  return await User.destroy({
+    where: {
+      email: email,
+    },
+  });
 };
