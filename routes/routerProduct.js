@@ -1,23 +1,10 @@
 const express = require("express");
 const routerProduct = express.Router();
 const { Op } = require("sequelize");
-
+const { getProduct } = require("../controller/productController");
 const Product = require("../models/Product");
 
-routerProduct.get("/:id", async (req, res) => {
-  try {
-    const id = req.params.id;
-    const product = await Product.findByPk(id);
-
-    if (!product) {
-      return res.status(404).json({ error: "The product does not exist" });
-    }
-
-    res.send(product);
-  } catch (error) {
-    res.status(500).json({ error: "Server Error" });
-  }
-});
+routerProduct.get("/:id", getProduct);
 
 routerProduct.get("/", async (req, res) => {
   try {
@@ -47,7 +34,6 @@ routerProduct.get("/search/:query", async (req, res) => {
   }
 });
 
-
 routerProduct.post("/submit", async (req, res) => {
   try {
     const results = await Product.create(req.body);
@@ -57,7 +43,5 @@ routerProduct.post("/submit", async (req, res) => {
     res.status(500).json({ error: "Search failed" });
   }
 });
-
-
 
 module.exports = routerProduct;
