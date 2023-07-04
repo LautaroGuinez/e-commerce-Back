@@ -7,6 +7,11 @@ exports.getProducByID = async (id) => {
   return product;
 };
 
+
+
+
+
+
 exports.getAllProducts = async () => {
   const products = await Product.findAll();
   return products;
