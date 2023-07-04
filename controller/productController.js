@@ -32,10 +32,10 @@ const getProductByQuery = async (req, res) => {
 const submitProduct = async (req, res) => {
   try {
     const product = await productService.postProduct(req.body);
-    res.sendStatus(200).json(product);
+    return res.sendStatus(200).json(product);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Search failed" });
+    return res.status(500).json({ error: "Search failed" });
   }
 };
 module.exports = {
