@@ -33,3 +33,12 @@ exports.login = async (users) => {
   };
   return payload;
 };
+exports.deleteUserService = async (id) => {
+  User.destroy({
+    where: {
+      id: id,
+    },
+  })
+    .then(() => res.sendStatus(202))
+    .catch(next);
+};

@@ -40,5 +40,9 @@ const persistence = (req, res) => {
     return res.status(500).json({ error: "Server Error" });
   }
 };
-
-module.exports = { register, login, logout, persistence };
+const deleteUser = async (req, res) => {
+  try {
+    const delet = await userService.deleteUserService(req.params.id);
+  } catch (error) {}
+};
+module.exports = { register, login, logout, persistence, deleteUser };
