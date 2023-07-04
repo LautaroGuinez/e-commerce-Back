@@ -3,19 +3,12 @@ const routerUser = express.Router();
 const bcrypt = require("bcrypt");
 
 const User = require("../models/Users");
+const { register } = require("../controllers/userController");
 const { generateToken } = require("../config/tokens");
 const { validateAuth } = require("../middleware/index.js");
+const { format } = require("sequelize/types/utils");
 
-routerUser.post("/register", async (req, res) => {
-  try {
-    const { name, lastname, email, password } = req.body;
-    const user = await User.create({ name, lastname, email, password });
-    res.status(201).send(user);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Registration failed" });
-  }
-});
+routerUser.post("/register", register);
 
 routerUser.post("/login", async (req, res) => {
   const { email, password } = req.body;
