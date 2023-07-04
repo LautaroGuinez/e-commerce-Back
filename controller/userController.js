@@ -7,7 +7,7 @@ const register = async (req, res) => {
     const user = await userService.register(req.body);
     return res.status(201).send(user);
   } catch (error) {
-    res.status(400).send(error);
+    return res.status(400).send(error);
   }
 };
 
@@ -16,29 +16,28 @@ const login = async (req, res) => {
     const payload = await userService.login(req.body);
     const token = generateToken(payload);
     res.cookie("token", token);
-    res.json({ message: "login successful", payload });
+    return res.json({ message: "login successful", payload });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Logout failed" });
+    return res.status(500).json({ error: "Logout failed" });
   }
 };
 
 const logout = (req, res) => {
   try {
     res.clearCookie("token");
-    res.sendStatus(204);
+    return res.sendStatus(204);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Logout failed" });
+    return res.status(500).json({ error: "Logout failed" });
   }
 };
 
 const persistence = (req, res) => {
   try {
-    res.send(req.user);
+    return res.send(req.user);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    return res.status(500).json({ error: "Server Error" });
   }
 };
 
