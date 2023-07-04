@@ -18,8 +18,7 @@ const login = async (req, res) => {
     res.cookie("token", token);
     return res.json({ message: "login successful", payload });
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: "Logout failed" });
+    return res.status(500).json({ error: "Login failed" });
   }
 };
 
@@ -28,8 +27,26 @@ const logout = (req, res) => {
     res.clearCookie("token");
     return res.sendStatus(204);
   } catch (error) {
-    console.error(error);
     return res.status(500).json({ error: "Logout failed" });
+  }
+};
+
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await userService.getAllUsers();
+    return res.status(200).send(users);
+  } catch (error) {
+    return res.status(500).json({ error });
+  }
+};
+
+const deleteUser = async (req, res) => {
+  try {
+    const user = await userService.getUserByEmail(req.body);
+    await userService.deleteUser(user);
+    return res.sendStatus(201);
+  } catch (error) {
+    return res.status(500).json({ error });
   }
 };
 
@@ -41,4 +58,11 @@ const persistence = (req, res) => {
   }
 };
 
-module.exports = { register, login, logout, persistence };
+module.exports = {
+  register,
+  login,
+  logout,
+  persistence,
+  getAllUsers,
+  deleteUser,
+};
