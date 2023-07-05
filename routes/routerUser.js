@@ -20,7 +20,6 @@ routerUser.get("/logout", logout);
 
 routerUser.get("/me", validateAuth, persistence);
 
-routerUser.delete("/me/:id", deleteUser);
 routerUser.post("/register", register);
 
 routerUser.post("/login", login);

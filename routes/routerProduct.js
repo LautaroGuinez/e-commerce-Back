@@ -2,19 +2,24 @@ const express = require("express");
 const routerProduct = express.Router();
 const { Op } = require("sequelize");
 const {
-  getProduct,
+  getProductByID,
   getAllProducts,
   getProductByQuery,
   submitProduct,
+  deleteProduct,
+  editProduct,
 } = require("../controller/productController");
-const Product = require("../models/Product");
 
-routerProduct.get("/:id", getProduct);
+routerProduct.get("/:id", getProductByID);
 
 routerProduct.get("/", getAllProducts);
 
 routerProduct.get("/search/:query", getProductByQuery);
 
 routerProduct.post("/submit", submitProduct);
+
+routerProduct.delete("/delete/:id", deleteProduct);
+
+routerProduct.put("/:id/edit", editProduct);
 
 module.exports = routerProduct;

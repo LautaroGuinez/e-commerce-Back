@@ -1,16 +1,11 @@
 const Product = require("../models/Product");
 const { Op } = require("sequelize");
 
-exports.getProducByID = async (id) => {
+exports.getProductByID = async (id) => {
   const product = await Product.findByPk(id);
   if (!product) return new Error("The product does not exist");
   return product;
 };
-
-
-
-
-
 
 exports.getAllProducts = async () => {
   const products = await Product.findAll();
@@ -31,4 +26,23 @@ exports.getProductByQuery = async (query) => {
 exports.postProduct = async (product) => {
   const results = await Product.create(product);
   return results;
+};
+
+exports.deleteProduct = async (product) => {
+  const { id } = product;
+  return await Product.destroy({
+    where: {
+      id: id,
+    },
+  });
+};
+
+exports.editProduct = async (productID, product) => {
+  const editedProduct = await Product.update(product, {
+    where: {
+      id: productID,
+    },
+  });
+
+  return editedProduct;
 };
