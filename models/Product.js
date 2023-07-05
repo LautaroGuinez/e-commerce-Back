@@ -14,10 +14,6 @@ Product.init(
       type: Sequelize.INTEGER,
       allowNull: false,
     },
-    category: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
     description: {
       type: Sequelize.TEXT,
     },
@@ -31,7 +27,9 @@ Product.init(
       type: Sequelize.INTEGER,
     },
   },
-  { sequelize: db, modelName: "product" }
+  { sequelize: db, modelName: "products" }
 );
+
+
 
 module.exports = Product;
