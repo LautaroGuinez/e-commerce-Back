@@ -30,6 +30,8 @@ exports.login = async (users) => {
     email: user.email,
     name: user.name,
     lastname: user.lastname,
+    admin: user.admin,
+    super_admin: user.admin,
   };
   return payload;
 };

@@ -35,6 +35,10 @@ User.init(
       type: Sequelize.BOOLEAN,
       defaultValue: false,
     },
+    super_admin: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: false,
+    },
     salt: {
       type: Sequelize.STRING,
     },
