@@ -57,29 +57,16 @@ const persistence = (req, res) => {
     return res.status(500).json({ error: "Server Error" });
   }
 };
-const putUser = (req, res) => {
-  try{
-    User.update(req.body,{
-      where:{ email:req.body.email},
-      returning: true
-    })
-  } catch{
-
+const editUser = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const editedUser = await userService.editUser(email, req.body);
+    return res.status(200).send(editUser);
+  } catch (error) {
+    return res.status(500).json({ error: "Server Error" });
   }
 };
-router.put("/:urlTitle", (req, res, next) => {
-  Pages.update(req.body, {
-    where: {
-      urlTitle: req.params.urlTitle,
-    },
-    returning: true,
-  })
-    .then(([affectedRows, updated]) => {
-      const page = updated[0];
-      res.send(page);
-    })
-    .catch(next);
-});
+
 module.exports = {
   register,
   login,
@@ -87,5 +74,5 @@ module.exports = {
   persistence,
   getAllUsers,
   deleteUser,
-  putUser,
+  editUser,
 };

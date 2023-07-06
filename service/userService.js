@@ -56,3 +56,12 @@ exports.deleteUser = async (user) => {
     },
   });
 };
+
+exports.editUser = async (email, user) => {
+  const editedUser = await User.update(user, {
+    where: {
+      email: email,
+    },
+  });
+  return editedUser;
+};
