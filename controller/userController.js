@@ -42,14 +42,23 @@ const getAllUsers = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    const user = await userService.getUserByEmail(req.body);
-    await userService.deleteUser(user);
+    const { id } = req.params; // Obtener el ID del usuario de los parámetros de la URL
+    await userService.deleteUser(id); // Pasar el ID a la función deleteUser del servicio
     return res.sendStatus(201);
   } catch (error) {
     return res.status(500).json({ error });
   }
 };
 
+const editUser = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const editedUser = await userService.editUser(email, req.body);
+    return res.status(200).send(editedUser);
+  } catch (error) {
+    return res.status(500).json({ error: "Server Error" });
+  }
+};
 const persistence = (req, res) => {
   try {
     return res.send(req.user);
@@ -57,16 +66,6 @@ const persistence = (req, res) => {
     return res.status(500).json({ error: "Server Error" });
   }
 };
-const editUser = async (req, res) => {
-  try {
-    const { email } = req.body;
-    const editedUser = await userService.editUser(email, req.body);
-    return res.status(200).send(editUser);
-  } catch (error) {
-    return res.status(500).json({ error: "Server Error" });
-  }
-};
-
 module.exports = {
   register,
   login,
