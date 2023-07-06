@@ -74,6 +74,7 @@ exports.editUser = async (id, user) => {
     where: {
       id: id,
     },
+    returning: true,
   });
-  return editedUser;
+  return editedUser[1].data;
 };

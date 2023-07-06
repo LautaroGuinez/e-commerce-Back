@@ -12,7 +12,7 @@ const {
   sendMail,
 
   editUser,
-
+  sendUser,
 } = require("../controller/userController");
 
 const { validateAuth } = require("../middleware/index.js");
@@ -27,10 +27,12 @@ routerUser.post("/register", register);
 
 routerUser.post("/login", login);
 
-routerUser.delete("/:id/delete", deleteUser);
+routerUser.delete("/delete/:id", deleteUser);
 
-routerUser.put("/:id/edit", editUser);
+routerUser.put("/edit/:id", editUser);
 
-routerUser.post("/send" , sendMail)
+routerUser.post("/send", sendMail);
+
+routerUser.get("/:email", sendUser);
 
 module.exports = routerUser;

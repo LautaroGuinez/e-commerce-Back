@@ -41,8 +41,9 @@ const getAllUsers = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    const { id } = req.params; // Obtener el ID del usuario de los parámetros de la URL
-    await userService.deleteUser(id); // Pasar el ID a la función deleteUser del servicio
+    const id = req.params.id;
+    console.log(id);
+    await userService.deleteUser(id);
     return res.sendStatus(201);
   } catch (error) {
     return res.status(500).json({ error });
@@ -51,8 +52,8 @@ const deleteUser = async (req, res) => {
 
 const editUser = async (req, res) => {
   try {
-    const { id } = req.params;
-    const editedUser = await userService.editUser(id, req.body);
+    const id = req.params.id;
+    const editedUser = await userService.editUser(id, req.body.data);
     return res.status(200).send(editedUser);
   } catch (error) {
     return res.status(500).json({ error: "Server Error" });
@@ -75,6 +76,15 @@ const sendMail = async (req, res) => {
     return res.status(500).json({ error: "Error sending email" });
   }
 };
+const sendUser = async (req, res) => {
+  const data = { email: `${req.params.email}` };
+  try {
+    const user = await userService.getUserByEmail(data);
+    return res.status(200).send(user);
+  } catch {
+    return res.status(400).json({ error: "Error sendUser" });
+  }
+};
 
 module.exports = {
   register,
@@ -85,6 +95,7 @@ module.exports = {
   deleteUser,
 
   sendMail,
+  sendUser,
 
   editUser,
 };
