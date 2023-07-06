@@ -1,4 +1,3 @@
-const User = require("../models/Users");
 const { generateToken } = require("../config/tokens");
 const userService = require("../service/userService");
 
