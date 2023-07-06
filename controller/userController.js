@@ -66,31 +66,17 @@ const persistence = (req, res) => {
     return res.status(500).json({ error: "Server Error" });
   }
 };
-<<<<<<< HEAD
-=======
-const editUser = async (req, res) => {
+
+const sendMail = async (req, res) => {
   try {
-    const { email } = req.body;
-    const editedUser = await userService.editUser(email, req.body);
-    return res.status(200).send(editUser);
+    const send = await userService.getUserByEmail(req.body);
+    await userService.sendMail(send);
+    return res.status(200);
   } catch (error) {
-    return res.status(500).json({ error: "Server Error" });
+    return res.status(500).json({ error: "Error sending email" });
   }
 };
 
-const sendMail = async (req,res) =>{
-  try{
-   const send = await userService.getUserByEmail(req.body);
-   await userService.sendMail(send)
-   return res.status(200);
-  }
-  catch (error) {
-    return res.status(500).json({error: "Error sending email"})
-  }
-}
-
-
->>>>>>> 0136714af80f6d3aa099c1e348e005b20ea36a62
 module.exports = {
   register,
   login,
@@ -102,5 +88,4 @@ module.exports = {
   sendMail,
 
   editUser,
-
 };
