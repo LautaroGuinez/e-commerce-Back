@@ -2,12 +2,12 @@ const nodemailer = require("nodemailer");
 
 const emailConfig = (addressee) => {
     const transporter = nodemailer.createTransport({
-      host: "smtp.example.com", 
+      host: "http://localhost:3000/", 
       port: 587, 
       secure: false,
       auth: {
-        user: "tu_correo@example.com", 
-        pass: "tu_contraseña", 
+        user: "vgamer@outlook.com.ar", 
+        pass: "GAMER1234", 
       },
     });
   
@@ -18,7 +18,7 @@ const emailConfig = (addressee) => {
     `;
   
     const opcionesCorreo = {
-      from: "tu_correo@example.com", // Reemplaza con tu dirección de correo
+      from: "vgamer@outlook.com.ar", // Reemplaza con tu dirección de correo
       to: addressee,
       subject: "Confirmación de compra",
       html: mensaje,
