@@ -49,11 +49,10 @@ exports.getUserByEmail = async (data) => {
   return user;
 };
 
-exports.deleteUser = async (user) => {
-  const { email } = user;
+exports.deleteUser = async (id) => {
   return await User.destroy({
     where: {
-      email: email,
+      id: id,
     },
   });
 };

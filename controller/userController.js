@@ -42,8 +42,8 @@ const getAllUsers = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    const user = await userService.getUserByEmail(req.body);
-    await userService.deleteUser(user);
+    const { id } = req.params; 
+    await userService.deleteUser(id); 
     return res.sendStatus(201);
   } catch (error) {
     return res.status(500).json({ error });
