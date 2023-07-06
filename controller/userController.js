@@ -57,6 +57,15 @@ const persistence = (req, res) => {
     return res.status(500).json({ error: "Server Error" });
   }
 };
+const editUser = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const editedUser = await userService.editUser(email, req.body);
+    return res.status(200).send(editUser);
+  } catch (error) {
+    return res.status(500).json({ error: "Server Error" });
+  }
+};
 
 const sendMail = async (req,res) =>{
   try{
@@ -77,5 +86,9 @@ module.exports = {
   persistence,
   getAllUsers,
   deleteUser,
+
   sendMail,
+
+  editUser,
+
 };

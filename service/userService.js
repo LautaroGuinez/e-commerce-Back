@@ -58,6 +58,7 @@ exports.deleteUser = async (user) => {
   });
 };
 
+
 exports.sendMail = async (mail) =>{
   const {email} = mail;
    const user = await User.findOne({
@@ -67,3 +68,13 @@ exports.sendMail = async (mail) =>{
   })
   return emailConfig(user)
 }
+
+exports.editUser = async (email, user) => {
+  const editedUser = await User.update(user, {
+    where: {
+      email: email,
+    },
+  });
+  return editedUser;
+};
+

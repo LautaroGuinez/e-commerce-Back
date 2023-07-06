@@ -8,12 +8,14 @@ const {
   persistence,
   getAllUsers,
   deleteUser,
+
   sendMail,
+
+  editUser,
+
 } = require("../controller/userController");
 
 const { validateAuth } = require("../middleware/index.js");
-const router = require(".");
-const id = require("volleyball/lib/id");
 
 routerUser.get("/", getAllUsers);
 
@@ -25,7 +27,9 @@ routerUser.post("/register", register);
 
 routerUser.post("/login", login);
 
-routerUser.delete("/delete", deleteUser);
+routerUser.delete("/:id/delete", deleteUser);
+
+routerUser.put("/:id/edit", editUser);
 
 routerUser.post("/send" , sendMail)
 
