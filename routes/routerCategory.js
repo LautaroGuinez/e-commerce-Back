@@ -1,8 +1,6 @@
 const express = require("express");
 const Category = require("../models/Category");
 const Product = require('../models/Product');
-const ProductCategory = require("../models/ProductCategory")
-
 const routerCategory = express.Router();
 
 routerCategory.post("/create", async (req, res) => {
@@ -47,21 +45,25 @@ routerCategory.put("/update/:id", async (req, res) => {
   }
 });
 
-routerCategory.post('/assignCategory/:productId/:categoryId', async (req, res) => {
-    const { productId, categoryId } = req.params;
-  
-    try {
-      const newAssignment = await ProductCategory.create({
-        product_id: productId,
-        category_id: categoryId,
-      });
-  
-      res.status(200).json({ message: 'Category assigned successfully', assignment: newAssignment });
-    } catch (error) {
-      console.error('Error assigning category to product:', error);
-      res.status(500).json({ error: 'Error assigning category to product' });
+routerCategory.post('/:productId/addCategory/:categoryId', async (req, res) => {
+  const { productId, categoryId } = req.params;
+
+  try {
+    const product = await Product.findByPk(productId);
+    const catt = await Category.findByPk(categoryId);
+
+    if (!product || !catt) {
+      return res.status(404).json({ error: 'Product or category not found' });
     }
+    await product.addCategory(catt);
+
+    return res.status(200).json({ message: 'Category added to product successfully' });
+  } catch (error) {
+    console.error('Error adding category to product:', error);
+    return res.status(500).json({ error: 'Error adding category to product' });
+  }
 });
+
   
 routerCategory.get('/productsByCategory/:categoryName', async (req, res) => {
     const { categoryName } = req.params;

@@ -10,7 +10,7 @@ Category.init(
         allowNull: false,
     },
   },
-  { sequelize: db, modelName: "categories" }
+  { sequelize: db, modelName: "category" }
 );
 
 module.exports = Category;
