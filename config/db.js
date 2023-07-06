@@ -1,10 +1,9 @@
 // configuracion de db
 const Sequelize = require("sequelize");
-const envs = require("./envs")
 
-const db = new Sequelize(envs.DB_HOST, null, null, {
-  host: "localhost",
-  dialect: "postgres",
+const db = new Sequelize(process.env.DB_NAME, null, null, {
+  host: process.env.DB_HOST,
+  dialect: process.env.DB,
   logging: false,
 });
 
