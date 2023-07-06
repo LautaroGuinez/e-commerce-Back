@@ -11,6 +11,4 @@ router.use("/cars", cars)
 router.use("/category", category);
 
 
-
-
 module.exports = router;

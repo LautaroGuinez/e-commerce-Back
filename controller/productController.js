@@ -60,6 +60,8 @@ const editProduct = async (req, res) => {
     return res.status(500).json({ error: "Search failed" });
   }
 };
+
+
 module.exports = {
   getProductByID,
   getAllProducts,

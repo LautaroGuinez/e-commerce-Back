@@ -67,6 +67,18 @@ const editUser = async (req, res) => {
   }
 };
 
+const sendMail = async (req,res) =>{
+  try{
+   const send = await userService.getUserByEmail(req.body);
+   await userService.sendMail(send)
+   return res.status(200);
+  }
+  catch (error) {
+    return res.status(500).json({error: "Error sending email"})
+  }
+}
+
+
 module.exports = {
   register,
   login,
@@ -74,5 +86,9 @@ module.exports = {
   persistence,
   getAllUsers,
   deleteUser,
+
+  sendMail,
+
   editUser,
+
 };

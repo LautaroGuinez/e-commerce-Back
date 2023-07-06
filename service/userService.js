@@ -1,5 +1,6 @@
 const User = require("../models/Users");
 const bcrypt = require("bcrypt");
+const emailConfig = require("../config/emailConfig")
 
 exports.register = async (user) => {
   const { email } = user;
@@ -57,6 +58,17 @@ exports.deleteUser = async (user) => {
   });
 };
 
+
+exports.sendMail = async (mail) =>{
+  const {email} = mail;
+   const user = await User.findOne({
+    where:{
+      email: email
+    }
+  })
+  return emailConfig(user)
+}
+
 exports.editUser = async (email, user) => {
   const editedUser = await User.update(user, {
     where: {
@@ -65,3 +77,4 @@ exports.editUser = async (email, user) => {
   });
   return editedUser;
 };
+
