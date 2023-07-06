@@ -8,6 +8,7 @@ const {
   persistence,
   getAllUsers,
   deleteUser,
+  sendMail,
 } = require("../controller/userController");
 
 const { validateAuth } = require("../middleware/index.js");
@@ -25,5 +26,7 @@ routerUser.post("/register", register);
 routerUser.post("/login", login);
 
 routerUser.delete("/delete", deleteUser);
+
+routerUser.post("/send" , sendMail)
 
 module.exports = routerUser;
