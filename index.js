@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const volleyball = require("volleyball");
@@ -6,12 +7,12 @@ const cookieParser = require("cookie-parser");
 
 const router = require("./routes");
 const db = require("./config/db.js");
-const envs = require("./config/envs");
+
 
 app.use(volleyball);
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: process.env.URLFRONT,
     credentials: true,
   })
 );
@@ -23,5 +24,5 @@ app.use("/api", router);
 
 db.sync({ force: false }).then(() => {
   console.log("db conected");
-  app.listen(envs.PORT, () => console.log("Server listening on port 3001"));
+  app.listen(process.env.PORT, () => console.log(`Server listening on port ${process.env.PORT}`));
 });
