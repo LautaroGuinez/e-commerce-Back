@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 
 const emailConfig = (addressee) => {
     const transporter = nodemailer.createTransport({
-      host: "http://localhost:3000/", 
+      host: 'smtp.office365.com', 
       port: 587, 
       secure: false,
       auth: {
