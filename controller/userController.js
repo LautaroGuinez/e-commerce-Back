@@ -52,8 +52,8 @@ const deleteUser = async (req, res) => {
 
 const editUser = async (req, res) => {
   try {
-    const { email } = req.body;
-    const editedUser = await userService.editUser(email, req.body);
+    const { id } = req.params;
+    const editedUser = await userService.editUser(id, req.body);
     return res.status(200).send(editedUser);
   } catch (error) {
     return res.status(500).json({ error: "Server Error" });
