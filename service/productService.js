@@ -43,5 +43,15 @@ exports.editProduct = async (productID, product) => {
     },
   });
 
+  exports.getProductByCategory = async (category) => {
+    const products = await Product.findAll({
+      where: {
+        category: category,
+      },
+    });
+
+    return products;
+  };
+
   return editedProduct;
 };

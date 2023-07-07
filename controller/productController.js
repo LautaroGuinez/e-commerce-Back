@@ -31,6 +31,16 @@ const getProductByQuery = async (req, res) => {
   }
 };
 
+const getProductByCategory = async (req, res) => {
+  try {
+    const name = req.params.name;
+    const products = await productService.getProductByCategory(name);
+    return res.status(200).send(products);
+  } catch (error) {
+    return res.status(500).json({ error: "Search failed" });
+  }
+};
+
 const submitProduct = async (req, res) => {
   try {
     const product = await productService.postProduct(req.body);
@@ -67,4 +77,5 @@ module.exports = {
   submitProduct,
   deleteProduct,
   editProduct,
+  getProductByCategory,
 };

@@ -8,6 +8,7 @@ const {
   submitProduct,
   deleteProduct,
   editProduct,
+  getProductByCategory,
 } = require("../controller/productController");
 
 routerProduct.get("/:id", getProductByID);
@@ -15,6 +16,8 @@ routerProduct.get("/:id", getProductByID);
 routerProduct.get("/", getAllProducts);
 
 routerProduct.get("/search/:query", getProductByQuery);
+
+routerProduct.get("/category/:name", getProductByCategory);
 
 routerProduct.post("/submit", submitProduct);
 
