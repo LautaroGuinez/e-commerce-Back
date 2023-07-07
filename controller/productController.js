@@ -43,11 +43,10 @@ const submitProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
   try {
     const id = req.params.id;
-    const product = await productService.getProducByID(id);
-    await productService.deleteProduct(product);
-    return res.sendStatus(200);
+    await productService.deleteProduct(id);
+    return res.sendStatus(201);
   } catch (error) {
-    return res.status(500).json({ error: "Search failed" });
+    return res.status(500).json({ error });
   }
 };
 
@@ -60,7 +59,6 @@ const editProduct = async (req, res) => {
     return res.status(500).json({ error: "Search failed" });
   }
 };
-
 
 module.exports = {
   getProductByID,

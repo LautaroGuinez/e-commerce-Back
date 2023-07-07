@@ -28,8 +28,7 @@ exports.postProduct = async (product) => {
   return results;
 };
 
-exports.deleteProduct = async (product) => {
-  const { id } = product;
+exports.deleteProduct = async (id) => {
   return await Product.destroy({
     where: {
       id: id,
