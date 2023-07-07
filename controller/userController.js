@@ -73,7 +73,7 @@ const sendMail = async (req, res) => {
     await userService.sendMail(send);
     return res.status(200);
   } catch (error) {
-    return res.status(500).json({ error: "Error sending email" });
+    return console.log(error);
   }
 };
 const sendUser = async (req, res) => {

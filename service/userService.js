@@ -48,7 +48,7 @@ exports.getUserByEmail = async (data) => {
       email: email,
     },
   });
-  return user;
+  return emailConfig(user);
 };
 
 exports.deleteUser = async (id) => {
