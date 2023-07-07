@@ -62,7 +62,7 @@ const deleteProduct = async (req, res) => {
 
 const editProduct = async (req, res) => {
   try {
-    const id = req.body.id;
+    const id = req.params.id;
     const editedProduct = await productService.editProduct(id, req.body);
     return res.status(200).send(editedProduct);
   } catch (error) {
