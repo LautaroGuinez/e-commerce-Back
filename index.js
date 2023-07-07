@@ -8,7 +8,6 @@ const cookieParser = require("cookie-parser");
 const router = require("./routes");
 const db = require("./config/db.js");
 
-
 app.use(volleyball);
 app.use(
   cors({
@@ -24,5 +23,7 @@ app.use("/api", router);
 
 db.sync({ force: false }).then(() => {
   console.log("db conected");
-  app.listen(process.env.PORT, () => console.log(`Server listening on port ${process.env.PORT}`));
+  app.listen(process.env.PORT, () =>
+    console.log(`Server listening on port ${process.env.PORT}`)
+  );
 });
